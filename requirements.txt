@@ -62,7 +62,6 @@ intervaltree
 ipykernel==5.3.4
 ipython==7.16.1
 ipython-genutils==0.2.0
-ipywidget==7.6.3
 itsdangerous==1.1.0
 jdcal==1.4.1
 jedi==0.18.0
