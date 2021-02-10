@@ -19,7 +19,6 @@ brotlipy==0.7.0
 certifi==2020.12.5
 click==7.1.2
 cloudpickle==1.6.0
-clyent==1.2.2
 comtypes==1.1.7
 conda==4.9.2
 conda-build==3.18.11
