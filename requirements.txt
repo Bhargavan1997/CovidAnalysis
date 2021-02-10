@@ -20,10 +20,6 @@ certifi==2020.12.5
 click==7.1.2
 cloudpickle==1.6.0
 comtypes==1.1.7
-conda==4.9.2
-conda-build==3.18.11
-conda-package-handling==1.7.2
-conda-verify==3.4.2
 contextlib2==0.6.0.post1
 cycler==0.10.0
 Cython==0.29.1
