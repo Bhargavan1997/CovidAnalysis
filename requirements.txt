@@ -1,7 +1,6 @@
 alabaster==0.7.12
 appdirs==1.4.4
 argh==0.26.2
-asn1crypto @ file:///tmp/build/80754af9/asn1crypto_1596577642040/work
 astroid @ file:///C:/ci/astroid_1592481955828/work
 astropy @ file:///C:/ci/astropy_1606919052914/work
 async-generator==1.10
