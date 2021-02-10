@@ -149,7 +149,6 @@ regex==2020.11.13
 requests==2.25.1
 retrying==1.3.3
 rope==0.18.0
-Rtree==0.9.4
 ruamel-yaml==0.15.87
 seaborn==0.11.1
 simplegeneric==0.8.1
