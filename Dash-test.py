@@ -428,65 +428,6 @@ app.layout = html.Div([
                 html.P(top_onedayspike_deaths_list)
     ],style=corner_column_style,id='top-spike-deaths')]
 ),
-    
-    # Update each and every component of the dashboard every 24 hours to get
-    #latest updates
-    dcc.Interval(
-        id='world-cases-map-interval',
-        interval=86400000),
-
-    dcc.Interval(
-        id='total-cases-interval',
-        interval=86400000),
-    
-    '''dcc.Interval(
-        id='total-deaths',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='active-cases',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='countries-affected',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='new-trend-graph',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='total-trend-graph',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='table',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='new-cases-graph',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='new-deaths-graph',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='top=10-cases',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='top-spike-cases',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='top-10-deaths',
-        interval=86400000),
-    
-    dcc.Interval(
-        id='top-spike-deaths',
-        interval=86400000)'''
-
 ])
 
 #callback for drowpdown
