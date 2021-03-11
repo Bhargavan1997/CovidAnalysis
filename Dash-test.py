@@ -56,7 +56,7 @@ new_cases_df = df.groupby('date',as_index=False)[['new_cases','new_tests','total
 date = df['date'].max()
 total_cases = int(sum(df[df['date'] == date]['total_cases']))
 total_deaths = int(sum(df[df['date'] == date]['total_deaths']))
-total_tests = int(sum(df[df['date'] == date]['total_tests']))
+total_tests = sum(new_cases_df['new_tests'])
 #print(date)
 countries_affected = len(pd.unique(df['location']))
 #active_cases = total_cases-total_deaths
