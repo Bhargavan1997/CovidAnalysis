@@ -7,6 +7,7 @@ Created on Tue Nov  3 20:01:34 2020
 import numpy as np
 import pandas as pd
 import dash
+from datetime import datetime, timedelta
 #import plotly.express as px
 #import dash_table
 #from plotly.graph_objs import *
@@ -19,7 +20,7 @@ import dash_html_components as html
 #from plotly.subplots import make_subplots
 
 df = pd.read_csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv', delimiter = ",", encoding="utf-8-sig")
-#df_copy = df.copy()
+#df.to_csv('test.csv')
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SOLAR],
             meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}])
@@ -29,10 +30,12 @@ df['date'] = pd.to_datetime(df['date'],errors='ignore')
 df['iso_code'] = df['iso_code'].astype('str')
 df['continent'] = df['continent'].astype('str')
 df['location'] = df['location'].astype('str')
+#df['tota_tests'] = df['total_tests'].astype('int')
 #df['total_deaths'] = df['total_deaths'].astype('Int32')
 df['total_deaths'].fillna(0,inplace=True)
 df['total_cases'].fillna(0,inplace=True)
 df['total_tests'].fillna(0,inplace=True)
+
 
 df.drop(df[(df['iso_code']=='OWID_WRL')].index, inplace=True)
 df.dropna(thresh=23, inplace=True)
@@ -40,23 +43,30 @@ df.dropna(thresh=23, inplace=True)
 continent_df = df.groupby(['location','date']).agg({'population':'mean','new_tests':'sum'}).reset_index()
 
 continent_df['percentage_covered'] = (continent_df['new_tests']/continent_df['population'])*100
-
+#print(df.tail)
+#continent_df.to_csv('test.csv')
 
 #Table
 max_date = df['date'].max()
 
-#table_df = continent_df[(continent_df['date']==max_date)]
-table_df = continent_df.copy()
+
+new_cases_df = df.groupby('date',as_index=False)[['new_cases','new_tests','total_cases','total_tests']].sum()
+
+second_max_date = max_date-timedelta(1)
+table_df = continent_df[(continent_df['date']==second_max_date)]
+#table_df = continent_df.copy()
 table_df.population = table_df.population.round(2)
 table_df.total_tests = table_df.new_tests.round(2)
 table_df.percentage_covered = table_df.percentage_covered.round(2)
 
-new_cases_df = df.groupby('date',as_index=False)[['new_cases','new_tests','total_cases','total_tests']].sum()
+print(table_df)
 
+#new_cases_df.to_csv('test.csv')
 
 date = df['date'].max()
 total_cases = int(sum(df[df['date'] == date]['total_cases']))
 total_deaths = int(sum(df[df['date'] == date]['total_deaths']))
+#total_tests = (sum(df[df['date'] == date]['total_tests'])
 total_tests = sum(new_cases_df['new_tests'])
 #print(date)
 countries_affected = len(pd.unique(df['location']))
@@ -429,6 +439,17 @@ app.layout = html.Div([
                 html.P(top_onedayspike_deaths_list)
     ],style=corner_column_style,id='top-spike-deaths')]
 ),
+    
+    # Update each and every component of the dashboard every 24 hours to get
+    #latest updates
+    dcc.Interval(
+        id='world-cases-map-interval',
+        interval=86400000),
+
+    dcc.Interval(
+        id='total-cases-interval',
+        interval=86400000),
+
 ])
 
 #callback for drowpdown
