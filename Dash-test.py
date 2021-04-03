@@ -37,17 +37,18 @@ df['total_tests'].fillna(0,inplace=True)
 df.drop(df[(df['iso_code']=='OWID_WRL')].index, inplace=True)
 df.dropna(thresh=23, inplace=True)
 
-continent_df = df.groupby(['location','date']).agg({'population':'mean','total_tests':'sum'}).reset_index()
+continent_df = df.groupby(['location','date']).agg({'population':'mean','new_tests':'sum'}).reset_index()
 
-continent_df['percentage_covered'] = (continent_df['total_tests']/continent_df['population'])*100
+continent_df['percentage_covered'] = (continent_df['new_tests']/continent_df['population'])*100
 
 
 #Table
 max_date = df['date'].max()
 
-table_df = continent_df[(continent_df['date']==max_date)]
+#table_df = continent_df[(continent_df['date']==max_date)]
+table_df = continent_df.copy()
 table_df.population = table_df.population.round(2)
-table_df.total_tests = table_df.total_tests.round(2)
+table_df.total_tests = table_df.new_tests.round(2)
 table_df.percentage_covered = table_df.percentage_covered.round(2)
 
 new_cases_df = df.groupby('date',as_index=False)[['new_cases','new_tests','total_cases','total_tests']].sum()
