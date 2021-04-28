@@ -1,4 +1,3 @@
-
 import numpy as np
 import pandas as pd
 import dash
@@ -15,7 +14,7 @@ import dash_html_components as html
 #from plotly.subplots import make_subplots
 
 df = pd.read_csv('https://raw.githubusercontent.com/owid/covid-19-data/master/public/data/owid-covid-data.csv', delimiter = ",", encoding="utf-8-sig")
-#df.to_csv('test.csv')
+df.to_csv('test.csv')
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SOLAR],
             meta_tags=[{'name': 'viewport',
                             'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}])
@@ -54,7 +53,7 @@ table_df.population = table_df.population.round(2)
 table_df.total_tests = table_df.new_tests.round(2)
 table_df.percentage_covered = table_df.percentage_covered.round(2)
 
-print(table_df)
+#print(table_df)
 
 #new_cases_df.to_csv('test.csv')
 
@@ -240,7 +239,7 @@ def draw_table():
     cells=dict(values=[table_df.location, table_df.population, table_df.total_tests,
                        table_df.percentage_covered],
                line_color='lightgrey',
-               fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*188],
+               fill_color = [[rowOddColor,rowEvenColor,rowOddColor, rowEvenColor,rowOddColor]*202],
                align=['left','center'],
                font=dict(color='black',size=11)))])
     table_fig.update_layout(title={'text':'% of population covered in tests',
