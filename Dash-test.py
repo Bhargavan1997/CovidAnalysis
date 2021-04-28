@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Nov  3 20:01:34 2020
 
-@author: Maalolan
-"""
 import numpy as np
 import pandas as pd
 import dash
