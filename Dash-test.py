@@ -52,7 +52,7 @@ max_date = df['date'].max()
 
 new_cases_df = df.groupby('date',as_index=False)[['new_cases','new_tests','total_cases','total_tests']].sum()
 
-second_max_date = max_date-timedelta(1)
+second_max_date = max_date-timedelta(6)
 table_df = continent_df[(continent_df['date']==second_max_date)]
 #table_df = continent_df.copy()
 table_df.population = table_df.population.round(2)
