@@ -57,7 +57,7 @@ table_df.percentage_covered = table_df.percentage_covered.round(2)
 
 #new_cases_df.to_csv('test.csv')
 
-date = df['date'].max()
+date = df['date'].max() - timedelta(1)
 total_cases = int(sum(df[df['date'] == date]['total_cases']))
 total_deaths = int(sum(df[df['date'] == date]['total_deaths']))
 #total_tests = (sum(df[df['date'] == date]['total_tests'])
